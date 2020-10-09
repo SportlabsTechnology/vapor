@@ -190,5 +190,8 @@ public final class Request: ContainerAlias, DatabaseConnectable, HTTPMessageCont
         if hasActiveConnections {
             try! privateContainer.releaseCachedConnections()
         }
+        
+        // release cached services
+        (self.privateContainer as? BasicSubContainer)?.serviceCache = .init()
     }
 }
